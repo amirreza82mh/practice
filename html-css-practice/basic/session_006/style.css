@@ -1,0 +1,29 @@
+td{
+    font-size: 20px;
+}
+
+table ,td,tr{
+    border: black 2px solid;
+    /* border-bottom: black 2px solid; */
+    border-collapse: collapse;
+}
+
+table {
+    direction: rtl;
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(106, 240, 225);
+}
+
+/* td:nth-child(1) {
+    color: red;
+} */
+
+td:first-child{
+    color: red;
+}
+
+tr:hover {
+    background-color: chartreuse;
+}

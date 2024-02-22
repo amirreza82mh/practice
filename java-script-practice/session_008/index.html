@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>session_008</title>
+    </head>
+    <body>
+        <h1 id="lbl">result</h1>
+        <input type="button" value="click me 1!" onclick="showDate()">
+        <button onclick="this.innerHTML=Date()">click me 2!</button>
+        <br><br>
+        text: <input type="text" onchange="change()">
+        <br><br>
+        <input type="text" onchange="changeinput(this.value)">
+    </body> 
+
+    <script src="event.js"></script>
+</html>

@@ -1,0 +1,110 @@
+____
+# basic config:
+
+git config user.name "username" --> set name for my git, after this when i change somethings git know that i changed it
+git config --global user.name "username" --> set global name
+git config --global user.email "user email" --> set global email
+git config --list --> list of configs
+
+######################################################################
+____
+# start working with git
+
+git init --> use this command to start working with git
+git status --> show status in my project
+
+git add file-name --> send file in staging area   "use . to stage all files"
+git restore --staged file-name --> unstaged file
+
+git commit -m "message" --> commit my changes with message
+
+git log --> show commits
+git log --stat --> show commits with extra options
+git log --oneline --> show each commit in one line
+
+######################################################################
+____
+# work with branches
+
+git branch --> show all branches
+git branch --list --> show all branches
+
+git branch branch_name --> create branch with selected name
+git checkout bramch_name --> active selected branch
+
+git merge branch_name --> merge selected branch with main
+git merge --abort --> when we have conflict and we don't want to merge
+
+git branch -m old_name new_name --> rename branch
+
+git branch -d branch_name --> delete brancge
+git branch -D branch_name --> force to delete branch
+
+git checkout -b <branch-name> --> create branch an active it
+
+######################################################################
+____
+# return to previous commits
+
+checkout:
+	git checkout commit-id --> return to selected commit
+	git checkout main --> go back to HEAD commit
+	git branch <new_branch_name> commit_id --> create branch with commit files
+	
+revert:
+	git revert <branch_id> --> remove the changes in selected commit
+	*** we can revert my commit again
+	git revert --abort --> cancle the revert operation
+	git revert --continue --> fix conflicts and run this command to revert commit
+
+reset:
+	git reset <branch_id> --soft --> return to selected commit and stage files
+	git reset <branch_id> --mixed --> return to selected commit and unstage files,,, deafult 
+	git reset <branch_id> --hard --> return to selected commit and delete files
+	
+######################################################################
+____
+# git ignore
+
+steps:
+	1- create a file with .gitignore name
+	2- add the name of files that we want to ignore it by git
+	3- save changes and commit projects
+
+create --> touch .gitignore
+
+######################################################################
+____
+# github
+
+***we can find ssh config in ~/.ssh
+
+connect my laptop to git hub:
+	1- create ssh key --> ssh-keygen
+	2- use id_rsa.pub in github
+	3- after these steps use ssh to push or other command
+	
+push my files to github:
+	1- git branch -M main --> rename master branch
+	2- git remote add origin <ssh> --> open connetctoin
+	3- git push -u origin main --> push my files 
+	
+git remote -v --> show info about remote repo
+
+git push origin <branch-name> --> push selected branch on github
+
+create readme --> 
+	1- create a file with this name --> README.md
+	2- write readme with mark down language
+	3- commit and push
+
+git pull --> when happend conflict in remote repo we can bring it to local and fix it
+######################################################################
+____
+# stash
+
+git stash --> save my changes without save
+git stash save "messages" --> save changes witout commit and selected message
+git stash list --> show list of stash
+git stash clear --> remove all stashes
+git stash apply <stash-id> --> go back to my stash after changing everything

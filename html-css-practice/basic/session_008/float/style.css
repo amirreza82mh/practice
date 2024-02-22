@@ -1,0 +1,36 @@
+.main{
+    height: 300px;
+    background-color: rgb(98, 94, 90);
+}
+
+.red{
+    height: 200px;
+    width: 200px;
+    background-color: red;
+    float: right;
+}
+
+.green{
+    height: 200px;
+    width: 200px;
+    background-color: green;
+    float: right;
+}
+
+.blue{
+    height: 200px;
+    width: 200px;
+    background-color: blue;
+}
+
+.darkviolet{
+    height: 200px;
+    width: 200px;
+    background-color: darkviolet;
+    float: left;
+}
+
+
+/* .box{
+    display: inline-block;
+} */

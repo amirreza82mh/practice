@@ -1,0 +1,13 @@
+.outter{
+    width: 600px;
+    height: 600px;
+    background-color: yellowgreen;
+    border: 1px black solid;
+    overflow: hidden;
+}
+
+.inner{
+    width: 700px;
+    height: 200px;
+    background-color: #00AEEF;
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>post_list</title>
+</head>
+<body>
+    <ul>
+        {% for i in posts %}
+        <li><hr>
+            <a href="/posts/post_detail/{{ i.id }}">{{i.id}}</a>: {{i.title}}: <br>
+            {{i.text}} 
+        </li>
+        {% endfor %}
+        <hr>
+    </ul>
+</body>
+</html>

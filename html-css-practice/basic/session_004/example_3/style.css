@@ -1,0 +1,18 @@
+p{
+    font-size: 25px;
+}
+
+div ul{
+    font-size: 20px;
+    background-color: red;
+}
+
+p ~ ul{
+    font-size: 15px;
+    background-color: aqua;
+}
+
+p ~ p{
+    font-size: 20px;
+    background-color: yellow;
+}

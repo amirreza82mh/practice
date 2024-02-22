@@ -1,0 +1,12 @@
+p.Intro{
+    font-size: 20px;
+}
+
+input[type=email],input[type=password]{
+    border: red 2px solid;
+    background-color: bisque;
+}
+
+span.purple{
+    color: purple;
+}

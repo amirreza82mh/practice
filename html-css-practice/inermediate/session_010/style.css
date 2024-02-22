@@ -1,0 +1,32 @@
+table{
+    direction: rtl;
+}
+
+table ,th,td{
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+
+caption{
+    color: rebeccapurple;
+}
+
+th:nth-child(1){
+    color: red;
+}
+
+td:nth-child(1){
+    color: red;
+}
+
+col#one{
+    background-color: aqua;
+}
+
+col#two{
+    background-color: yellow; 
+}
+/* 
+col#three{
+    background-color: green;
+} */
