@@ -1,0 +1,142 @@
+____
+# multi operations with query
+
+POST _bulk
+{  
+    #indexing
+    {"index" : {"_index" : "test" , "_id" : "1"}}
+    {"field1" : "value1", "field2" : "value2"}
+
+    #delete
+    {"delete" : {"_index" : "test", "_id" : "2"}}
+
+    #create 
+    {"create" : {"_index" : "test", "_id" : "3"}}
+    {"field3" : "value3"}
+
+    #update
+    {"update" : {"_index" : "test", "_id" : "4"}}
+    {"doc" : {"field4" :  "value4", "field5" : "value5"}}
+}
+
+#################################################################
+____
+# match phrae
+
+GET /<target>/_search
+{
+    "query" : {
+        "match_phrase" : {
+            "field" : "phrase" 
+        }
+    }
+}
+
+----------------------------------
+
+# highlight
+
+GET /<target>/_search
+{
+    "query" : {
+        "match_phrase" : {
+            "field" : "message"
+        }
+    },
+
+    "highlight" : {
+        "fields" : {
+            "field" : {}
+        }
+    }
+}
+
+----------------------------------
+
+# slop
+
+GET /<target>/_search
+{
+    "query" : {
+        "match_phrase" : {
+            "query" : "message",
+            "slop" : number
+        }
+    }
+}
+
+----------------------------------
+
+# match_phrase_prefix
+
+GET /<target>/_search
+{
+    "query" : {
+        "match_phrase_prefix" : {
+            "field" : {
+                "query" : "message"
+            }
+        }
+    }
+}
+
+#################################################################
+
+# fuzzy query
+
+    1- changing a character (box --> fox)
+    2- remove a character (black --> lack)
+    3- insert a character (sic --> sick)
+    4- transposing two adjecent characters (act --> cat)
+
+# fuzzy with fuzziness and highlight
+
+ GET /<target>/_search
+ {
+    "query" : {
+        "fuzzy" : {
+            "title" : {
+                "value" : "jaba",
+                "fuzziness" : 1
+            }
+        }
+    },
+
+    "highlight" : {
+        "fields" : {
+            "title" : {}
+        }
+    }
+ }
+
+#################################################################
+____
+# term level query
+
+# term
+GET /<target>/_search
+{
+    "query" : {
+        "term" : {
+            "edition" : {
+                "value" : 3
+            }
+        }
+    }
+}
+
+----------------------------------
+
+# range
+
+GET books/_search
+{
+  "query": {
+    "range": {
+      "amazon_rating": {
+        "gte": 4.5,
+        "lte": 5
+      }
+    }
+  }
+}
