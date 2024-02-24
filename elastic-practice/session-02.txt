@@ -1,0 +1,42 @@
+____
+# ip and port
+
+elastic ip:port --> 127.0.0.1:9200
+kibana ip:port --> 127.0.0.1:5601
+
+#################################################################
+____
+# first queries
+
+GET /
+
+----------------------------------
+
+change config:
+    1- cd /etc/elasticsearch/
+    2- open elasticsearch.yml
+    3- change config and save
+    4- restart elasticsearch --> sudo systemctl restart elasticsearch.service 
+
+----------------------------------
+
+GET _cluster/health --> show information about cluster health
+GET _nodes/stats --> show
+
+----------------------------------
+create index:
+    PUT <index-name> --> create index
+    GET <index-name> --> show information about index
+
+----------------------------------
+
+create document in index:
+    1- PUT /<target || index-name>/_doc/<_id> --> create doc with selected id
+    2- POST /<target || index-name>/_doc/ --> elastic set id
+    3- PUT /<target>/_create/<_id> --> ?
+    4- POST /<target>/_create/<_id> --> ?
+
+----------------------------------
+
+read information from doc:
+    2- GET <target || index-name>/_doc/id --> show doc with selected id

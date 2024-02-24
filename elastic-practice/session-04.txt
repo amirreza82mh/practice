@@ -1,0 +1,107 @@
+____
+# search
+
+GET /<target>/_search --> search in selected index 
+GET /_search --> search in all indices
+
+#################################################################
+____
+# search with queries
+
+ids:
+    GET users/_search
+    {
+        "query" : {
+            "ids" : {
+            "values": [1, 2, 3, 4]
+            }
+        }
+    }
+
+----------------------------------
+
+match all:
+    GET users/_search
+    {
+        "query" : {
+            "match_all": {}
+        }
+    }
+
+----------------------------------
+
+match:
+    GET users/_search
+    {
+        "query": {
+            "match": {
+                "name": "amirreza"
+            }
+        }
+    }
+
+----------------------------------
+
+prefix:
+    form 1:
+        GET users/_search
+            {
+            "query": {
+                "prefix" : {
+                    "name" : "amir"
+                }
+            }
+        }
+
+    form 2:
+        GET users/_search
+        {
+            "query": {
+                "prefix": {
+                "name": {
+                    "value": "amir"
+                }
+                }
+            }
+        }
+
+----------------------------------
+
+or operations in match:
+
+    OR:
+        GET users/_search
+        {
+            "query": {
+                "match": {
+                    "name": "amirreza navid"
+                }
+            }
+        }
+    
+    AND:
+        GET users/_search
+        {
+            "query": {
+                "match": {
+                    "name": {
+                        "query": "amir navid",
+                        "operator": "and"
+                    }
+                }
+            }
+        }
+
+----------------------------------
+
+multi match: search in multiple fields
+
+    GET /users/_search
+    {
+        "query": {
+            "multi_match": {
+                "query": "amirreza"
+                , "fields": ["name", "age"]
+            }
+        }
+    }
