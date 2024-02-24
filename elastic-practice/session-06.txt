@@ -1,0 +1,52 @@
+____
+# compound query
+
+    1- must
+    2- must_not
+    3- should
+    4- filter
+
+GET /books/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "author": "jashua bloch"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "range": {
+            "amazon_rating": {
+              "lt": 4.7
+            }
+          }
+        }
+      ],
+      "should": [
+        {
+          "match": {
+            "tags": "Software"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "release_date": {
+              "gte": "2015-01-01"
+            }
+          }
+        },
+        {
+          "term": {
+            "edition": "3"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,72 @@
+____
+# Dynamic mapping
+
+GET <target>/_mapping
+
+-disable date_detectoin
+
+GET /<target>/_search
+{
+    "mapping" : {
+        "date_detectoin" : false
+    }
+}
+
+----------------------------------
+
+dynamic_date_format
+
+GET /<target>/_search
+{
+    "mapping" : {
+        "dynamic_date_format" : ["MM-dd-yyyy"]
+    }
+}
+
+#################################################################
+____
+# explicit mapping
+
+PUT movies
+{
+  "mappings": {
+    "properties": {
+      "title" : {
+        "type": "text"
+      },
+      "rating" : {
+        "type": "float"
+      },
+      "release_date" : {
+        "enabled" : false
+      }
+    }
+  }
+}
+
+#################################################################
+____
+# extend mapping
+
+PUT movies/_mapping
+{
+  "properties" : {
+    "email" : {
+      "type" : "keyword"
+    }
+  }
+}
+
+#################################################################
+____
+# transfer information
+
+POST _reindex
+{
+    "source" : {
+        "index" : "first_index"
+    },
+    "dest" : {
+        "index" : "destinations-index"
+    }
+}
