@@ -22,6 +22,7 @@ POST _bulk
 #################################################################
 ____
 # match phrae
+# This query is for searching in the specified text field
 
 GET /<target>/_search
 {
@@ -55,14 +56,16 @@ GET /<target>/_search
 
 # slop
 
-GET /<target>/_search
+GET books/_search
 {
-    "query" : {
-        "match_phrase" : {
-            "query" : "message",
-            "slop" : number
-        }
+  "query": {
+    "match_phrase": {
+      "synopsis": {
+        "query": "must book",
+        "slop": 2
+      }
     }
+  }
 }
 
 ----------------------------------

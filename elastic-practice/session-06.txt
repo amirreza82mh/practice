@@ -1,5 +1,5 @@
 ____
-# compound query
+# compound query bool
 
     1- must
     2- must_not

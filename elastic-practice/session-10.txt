@@ -1,0 +1,92 @@
+____
+# Data Type
+
+    1- text
+    2- keyword
+    3- constant-keyword
+    4- wildcard --> use this type for regex
+    5- date
+
+    6- Numeric field type:
+        . long
+        . integer
+        . short
+        . byte
+        . double
+        . float
+        . unsigned_long
+
+    7- boolean field:
+        . true or "true" or ""
+        . false or "flase"
+    
+    8- Range field:
+        . integer_range
+        . float_range
+        . long_range
+        . double_range
+        . date_range
+        . ip_range
+    
+    9- Geopoint
+
+    10- object field type:
+        PUT index
+        {
+            "mapping" : {
+                "properties" : {
+                    "title" : {
+                        "type" : "text"
+                    },
+                    "name" : {
+                        "properties" {
+                            "first_name" : {"type" : "text"}
+                            "last_name" : {"type" : "text"}
+                        }
+                    }
+                }
+            }
+        }
+
+    11- join field type
+        PUT index
+        {
+            "mapping" : {
+                "properties" : {
+                    "my_id" : {
+                        "type" : "keyword"
+                    }
+                    "my_join_field" : {
+                        "type" : "join",
+                        "relation" : {
+                            "question" : "answer"
+                        }
+                    }
+                }
+            }
+        }
+
+    12- search_as_you_type field type
+    13- field
+
+#################################################################
+____
+# runtime field
+PUT covid/_mapping
+{
+  "runtime" : {
+    "critical-death" : {
+      "type" : "long",
+      "script" : {
+        "source" : "emit(doc['critical'].value + doc['deaths'].value)"
+      }
+    }
+  }
+}
+
+GET covid/_search
+{
+  "fields": [
+    "critical-death", "country"
+    ]
+}

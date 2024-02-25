@@ -6,7 +6,7 @@ GET /<target>/_source/<_id>
 
 information of indices:
     1- GET /_cat/indices --> show all index
-    2- GET /_cat/indices/<target || index-name> --> show selected index
+    2- GET /_cat/indices/<target || index-name>?v=true --> show selected index
     3- GET /_cat/indices?v=True & ... ---> parameters
 
 ----------------------------------
