@@ -1,0 +1,154 @@
+____
+# delete by query
+
+POST movies/_delete_by_query
+{
+  "query" : {
+    "match" : {
+      "title" : "seven"
+    }
+  }
+}
+
+----------------------------------
+____
+# update
+
+POST movies/_update/1
+{
+  "doc": {
+    "rank" : 1,
+    "numver_of_contrib" : 2500000
+  }
+}
+
+#################################################################
+____
+# update with script
+
+# add function
+POST books/_update/1
+{
+  "script": {
+    "source": "ctx._source.tags.add('best book for learning java')"
+  }
+}
+
+----------------------------------
+
+# remove function
+POST books/_update/1
+{
+  "script": {
+    "source": "ctx._source.tags.remove(ctx._source.tags.indexOf('best book for learning java'))"
+  }
+}
+
+----------------------------------
+
+# add hello in _source
+POST books/_update/1
+{
+
+  "script": {
+    "source": "ctx._source.hello='good'"
+  }
+}
+
+----------------------------------
+
+# add many field in _source
+
+POST books/_update/1
+{
+  "script": {
+    "source": """
+      ctx._source.bye='bye bye';
+      ctx._source.one=1
+    """
+  }
+}
+
+----------------------------------
+
+# remove fields
+
+POST books/_update/1
+{
+  "script": {
+    "source": """
+      ctx._source.remove('hello');
+      ctx._source.remove('bye');
+      ctx._source.remove('one')
+    """
+  }
+}
+
+----------------------------------
+
+# use if else in elastic
+
+POST books/_update/2
+{
+  "script": {
+    "source": """
+      if(ctx._source.amazon_rating >= 4.7)
+        {ctx._source.good_book = true}
+      else
+        {ctx._source.good_book = false}
+    """
+  }
+}
+
+----------------------------------
+
+# use parameter
+
+POST books/_update/1
+{
+  "script": {
+    "source": """
+      if(ctx._source.amazon_rating >= params.good_book_rating)
+        {ctx._source.good_book = true}
+      else
+        {ctx._source.good_book = false}
+    """,
+    "params": {
+      "good_book_rating" : 4.4
+    }
+  }
+}
+
+----------------------------------
+
+# upsert
+
+POST books/_update/13
+{
+  "script": {
+    "source": """
+      ctx._source.rating = 4.4
+    """
+  },
+  "upsert": {
+    "title" : "Best Kotlin",
+    "rating" : 4.5
+  }
+}
+
+----------------------------------
+
+# update with query
+
+POST books/_update_by_query
+{
+  "query": {
+    "match": {
+      "title": "java"
+    }
+  },
+  "script": {
+    "source": "ctx._source.remove('edition')",
+    "lang": "painless"
+  }
+}
